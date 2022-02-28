@@ -24,6 +24,9 @@ public class ReadUsersApp {
             ObjectMapper mapper = new ObjectMapper();
             List<User> users = mapper.readValue(is, new TypeReference<List<User>>(){});
             logger.info(String.format("Loaded %d user%s", users.size(), (users.size() == 1 ? "" : "s")));
+            for( User u : users ) {
+                logger.info(String.format("User: %s", u.toString()));
+            }
             logger.info("How many with a city specified: " + users.stream().filter(user -> user.getCity() != null).collect(Collectors.toList()).size());
         }
         logger.info("Finishing");
